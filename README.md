@@ -1,5 +1,5 @@
 # spatial-normalization
-This repository contains sample code for our spatial normalization procedure for spatial transcriptomics data. We use a public dataset from 10x Genomics, obtained the data from the 10x Genomics website: https://www.10xgenomics.com/datasets/visium-cytassist-gene-expression-libraries-of-post-xenium-human-colon-cancer-ffpe-using-the-human-whole-transcriptome-probe-set-2-standard 
+This repository contains sample code for our spatial normalization procedure for spatial transcriptomics data. We use a public dataset from 10x Genomics, obtained from the company website: https://www.10xgenomics.com/datasets/visium-cytassist-gene-expression-libraries-of-post-xenium-human-colon-cancer-ffpe-using-the-human-whole-transcriptome-probe-set-2-standard 
 
 The raw data obtained from 10x Genomics is located in the "Raw Data" folder. The scripts in the "Code" folder will read in the raw data, perform the procedure, and output to the "Processed Data" folder. Due to the computational complexity of the MCMC step of the procedure, the scripts are set up to run this step on one gene cluster and spatial section.
 
