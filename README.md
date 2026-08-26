@@ -30,4 +30,3 @@ The scripts are described below and should be run in the following order:
 
 6)	construct_normalized_gs.R: reads in the normalized gene-spot matrices for each cluster & section and combines them together into the final normalized gene-spot matrix. Outputs are:
   a.	spcounts.rds (final normalized gene-spot matrix)
-<img width="468" height="611" alt="image" src="https://github.com/user-attachments/assets/ec3ff086-fd18-4349-943e-b69247610b4c" />
