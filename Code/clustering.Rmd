@@ -1,0 +1,45 @@
+---
+title: "Constrained K Means Clustering"
+author: "Jamie Forschmiedt"
+date: "2026-04-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(reticulate)
+#library(here)
+```
+
+```{r}
+use_condaenv("kmeans2") #Activate previously created conda environment 
+```
+
+```{python, eval=F}
+from pathlib import Path
+import numpy as np
+import pyreadr
+import pandas as pd
+from k_means_constrained import KMeansConstrained
+
+# Path to saved log normalized counts
+DATA_PATH = Path("/Users/jamie/Desktop/UMN/Spatial Transcriptomics Project/Github Code/Processed Data/ndcounts_as_matrix.rds")
+
+# Read in as a dataframe
+# The [None] makes it read in as a data frame instead of an OrderedDict object
+py_ndcounts = pyreadr.read_r(DATA_PATH)[None] # all ND counts
+
+# First, we want to convert our dataframe into an array so we can read it in to KMeansConstrained:
+ndArray = np.array(py_ndcounts)
+
+
+# random_state is the random seed used
+clust = KMeansConstrained(n_clusters=50, size_min=20, size_max=1000, random_state=0)
+clustfit = clust.fit_predict(ndArray) # takes a few minutes
+
+# Save cluster assignments to csv so we can read them back into R:
+df_clustfit = pd.DataFrame(clustfit) #convert to dataframe
+CLUST_PATH = Path("/Users/jamie/Desktop/UMN/Spatial Transcriptomics Project/Github Code/Processed Data/nd_constrained_clusters.csv")
+df_clustfit.to_csv(CLUST_PATH, index=False, header=True)
+```
